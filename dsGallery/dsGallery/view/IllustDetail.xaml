@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="dsGallery.view.IllustDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dsGallery.view"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!-- DETAIL PAGE BELOW-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="headerBackground" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button x:Name="GoBackButton" Content="Go Back" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{ThemeResource SystemAccentColor}" Click="BackButton_Click" />
+        </Grid>
+
+        <Grid x:Name="headerContent" Margin="20,52,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Connected image -->
+            <Image x:Name="detailedImage" MaxHeight="400" Source="{x:Bind DetailedObject.ImageLocation}" VerticalAlignment="Top" Stretch="Uniform" />
+
+            <!-- Panel to be coordinated with connected animation -->
+            <StackPanel x:Name="coordinatedPanel" Grid.Column="1" VerticalAlignment="Top" Margin="20,0">
+                <TextBlock Text="{x:Bind DetailedObject.Title}" Style="{ThemeResource SubheaderTextBlockStyle}" Margin="0,0,0,10"  />
+                <TextBlock Text="{x:Bind DetailedObject.Detail}" Style="{ThemeResource SubtitleTextBlockStyle}"  />
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Page>

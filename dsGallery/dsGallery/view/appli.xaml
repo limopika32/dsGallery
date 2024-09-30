@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="dsGallery.view.appli"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dsGallery.view"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local:ApplicationCollections x:Key="myAppCols"/>
+        <DataTemplate x:Key="LinkedLayoutForAppli" x:DataType="local:ApplicationCollection">
+            
+                <Grid Margin="0,12,0,12" AutomationProperties.Name="{x:Bind Title}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="150"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="mainContent" Source="{x:Bind ImageLocation}" MaxHeight="100" Stretch="Fill"/>
+
+                <StackPanel Margin="12,0,0,0" Grid.Column="1" >
+                    <TextBlock Text="{x:Bind Title}" FontSize="24" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                        HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                        <TextBlock Text="{x:Bind Detail}" FontFamily="Segoe UI" FontWeight="Normal" Style="{ThemeResource BodyTextBlockStyle}"
+                        TextTrimming="CharacterEllipsis" MaxLines="1"/>
+                    </StackPanel>
+            </Grid>
+           
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="部員が制作したアプリケーションを 実行 または 鑑賞 できます" Margin="0,0,0,20" Grid.Row="0"/>
+
+        <ListView x:Name="collection" Grid.Row="1"
+                  ItemsSource="{StaticResource myAppCols}"
+                  ItemTemplate="{StaticResource LinkedLayoutForAppli}"
+                  SelectionMode="None"
+                  Loaded="collection_Loaded"
+                  ItemClick="collection_ItemClick" IsItemClickEnabled="True"/>
+
+    </Grid>
+    
+</Page>
