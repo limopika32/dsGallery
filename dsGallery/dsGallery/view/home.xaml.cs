@@ -44,6 +44,12 @@ namespace dsGallery.view
                 case "停止":
                     hpView.CoreWebView2.Stop();
                     break;
+                case "Rekitページをみる":
+                    hpView.Source = new Uri("https://rekit-densan.studio.site/about");
+                    break;
+                case "KIT Web共有サーバーページをみる":
+                    hpView.Source = new Uri("https://www2.kanazawa-it.ac.jp/kitic/");
+                    break;
             }
         }
 

@@ -44,10 +44,8 @@
                   ItemClick="collection_ItemClick" IsItemClickEnabled="True"/>
 
         <MediaPlayerElement x:Name="mediaPlayerElement" Grid.Row="2"
-                            Source="ms-appx:///Resources/Music/neomini2.mp3"
-                            
                             AreTransportControlsEnabled="True"
-                            />
+                            AutoPlay="True"/>
 
     </Grid>
 </Page>

@@ -27,7 +27,6 @@ namespace dsGallery.view
     public sealed partial class music : Page
     {
         MusicCollection _storeditem;
-        MediaPlayer mediaPlayer = new MediaPlayer();
 
         public music()
         {
@@ -45,8 +44,7 @@ namespace dsGallery.view
                 // Stash the clicked item for use later. We'll need it when we connect back from the detailpage.
                 _storeditem = container.Content as MusicCollection;
 
-                mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Resources/Music/neomini2.mp3"));
-                mediaPlayer.Play();
+                mediaPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Resources/Music/neomini2.mp3"));
             }
 
         }

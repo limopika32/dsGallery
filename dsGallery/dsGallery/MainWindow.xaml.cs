@@ -10,12 +10,14 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.Search;
 using Windows.UI.ApplicationSettings;
 using WinRT.Interop;
 
@@ -30,6 +32,7 @@ namespace dsGallery
     public sealed partial class MainWindow : Window
     {
         private readonly AppWindow _appWindow;
+        static public StorageFolder mapp, mmus, mill, mxtd;
 
         public MainWindow()
         {
@@ -52,13 +55,38 @@ namespace dsGallery
 
             if (sdCard != null)
             {
-                
                 // An SD card is present and the sdCard variable now contains a reference to it.
+                
+                IReadOnlyList<StorageFolder> sf = await sdCard.GetFoldersAsync(CommonFolderQuery.DefaultQuery);
+                IReadOnlyList<StorageFile> sx = await sdCard.GetFilesAsync(CommonFileQuery.DefaultQuery);
+                
+                foreach (StorageFolder folder in sf)
+                {
+                    switch (folder.Name){
+                        case "appli":
+                            mapp = folder;
+                            break;
+                        case "music":
+                            mmus = folder;
+                            break;
+                        case "illust":
+                            mill = folder;
+                            break;
+                        case "system":
+                            mxtd = folder;
+                            break;
+                        default:
+                            break;
+                    }
+                    Debug.WriteLine(folder.Name + ", " + folder.DateCreated);
+                }
+                foreach (StorageFile file in sx)
+                    Debug.WriteLine(file.Name + ", " + file.DateCreated);
             }
             else
             {
-                
                 // No SD card is present.
+                Debug.WriteLine("SD card not detected.");
             }
         }
         

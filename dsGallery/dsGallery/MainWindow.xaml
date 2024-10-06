@@ -24,8 +24,7 @@
 
 
         <Frame x:Name="ContentFrame" IsTabStop="True"
-            NavigationFailed="ContentFrame_NavigationFailed">
-        </Frame>
+            NavigationFailed="ContentFrame_NavigationFailed"/>
 
 
     </NavigationView>
