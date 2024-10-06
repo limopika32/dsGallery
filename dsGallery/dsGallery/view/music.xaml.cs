@@ -45,48 +45,10 @@ namespace dsGallery.view
                 // Stash the clicked item for use later. We'll need it when we connect back from the detailpage.
                 _storeditem = container.Content as MusicCollection;
 
-                // Prepare the connected animation.
-                // Notice that the stored item is passed in, as well as the name of the connected element.
-                // The animation will actually start on the Detailed info page.
-                collection.PrepareConnectedAnimation("ForwardConnectedAnimation", _storeditem, "mainContent");
+                mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Resources/Music/neomini2.mp3"));
+                mediaPlayer.Play();
             }
 
-            // Navigate to the DetailedInfoPage.
-            // Note that we suppress the default animation.
-            Frame.Navigate(typeof(ApplicationDetail), _storeditem, new SuppressNavigationTransitionInfo());
-        }
-
-
-        private async void collection_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (_storeditem != null)
-            {
-                // If the connected item appears outside the viewport, scroll it into view.
-                collection.ScrollIntoView(_storeditem, ScrollIntoViewAlignment.Default);
-                collection.UpdateLayout();
-
-                // Play the second connected animation.
-                ConnectedAnimation animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("BackConnectedAnimation");
-                if (animation != null)
-                {
-                    // Setup the "back" configuration if the API is present.
-                    if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7))
-                    {
-                        animation.Configuration = new DirectConnectedAnimationConfiguration();
-                    }
-
-                    await collection.TryStartConnectedAnimationAsync(animation, _storeditem, "mainContent");
-                }
-
-                // Set focus on the list
-                collection.Focus(FocusState.Programmatic);
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Resources/Music/neomini2.mp3"));
-            mediaPlayer.Play();
         }
     }
 }
