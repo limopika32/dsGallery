@@ -33,6 +33,7 @@ namespace dsGallery
     {
         private readonly AppWindow _appWindow;
         static public StorageFolder mapp, mmus, mill, mxtd;
+        String prevTitle;
 
         public MainWindow()
         {
@@ -122,7 +123,7 @@ namespace dsGallery
             if (args.IsSettingsInvoked)
             {
                 Navigate(typeof(view.about), new EntranceNavigationTransitionInfo());
-            }else {
+            } else {
                 // find NavigationViewItem with Content that equals InvokedItem
                 var item = sender.MenuItems.OfType<NavigationViewItem>().First(x => (string)x.Content == (string)args.InvokedItem);
                 NavigationViewItem nitem = item;
@@ -130,16 +131,16 @@ namespace dsGallery
                 {
                     switch (nitem.Tag)
                     {
-                        case "NavigationView.Home":
+                        case "dsGallery.view.home":
                             Navigate(typeof(view.home), new EntranceNavigationTransitionInfo());
                             break;
-                        case "NavigationView.Application":
+                        case "dsGallery.view.appli":
                             Navigate(typeof(view.appli), new EntranceNavigationTransitionInfo());
                             break;
-                        case "NavigationView.Music":
+                        case "dsGallery.view.music":
                             Navigate(typeof(view.music), new EntranceNavigationTransitionInfo());
                             break;
-                        case "NavigationView.Illust":
+                        case "dsGallery.view.illust":
                             Navigate(typeof(view.illust), new EntranceNavigationTransitionInfo());
                             break;
 
@@ -164,11 +165,41 @@ namespace dsGallery
 
         private void On_Navigated(object sender, NavigationEventArgs e)
         {
+            mainNV.IsBackEnabled = ContentFrame.CanGoBack;
+
             if (ContentFrame.SourcePageType != null)
             {
-                mainNV.Header = ((NavigationViewItem)mainNV.SelectedItem)?.Content?.ToString();
+                // Select the nav view item that corresponds to the page being navigated to.
+                try
+                {
+                mainNV.SelectedItem = mainNV.MenuItems
+                            .OfType<NavigationViewItem>()
+                            .First(i => i.Tag.Equals(ContentFrame.SourcePageType.FullName.ToString()));
+                } catch (System.InvalidOperationException) { }
 
+                mainNV.Header = ((NavigationViewItem)mainNV.SelectedItem)?.Content?.ToString();
             }
+        }
+
+        private void mainNV_BackRequested(NavigationView sender,
+                                   NavigationViewBackRequestedEventArgs args)
+        {
+            TryGoBack();
+        }
+
+        private bool TryGoBack()
+        {
+            if (!ContentFrame.CanGoBack)
+                return false;
+
+            // Don't go back if the nav pane is overlayed.
+            if (mainNV.IsPaneOpen &&
+                (mainNV.DisplayMode == NavigationViewDisplayMode.Compact ||
+                 mainNV.DisplayMode == NavigationViewDisplayMode.Minimal))
+                return false;
+
+            ContentFrame.GoBack();
+            return true;
         }
     }
 }
