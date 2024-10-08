@@ -15,7 +15,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="dummy" Grid.Row="0" IsTapEnabled="True"/>
+        <Button x:Name="closeButton" VerticalAlignment="Top" 
+                Foreground="White"
+                Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
+                Click="closeButton_Click">
+            <FontIcon Glyph="&#xE711;" />
+        </Button>
+
         <!-- Connected image -->
             <Image x:Name="detailedImage" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
                    Source="{x:Bind DetailedObject.ImageLocation}" Height="auto" IsTapEnabled="True"/>

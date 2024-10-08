@@ -11,18 +11,15 @@
     <!-- DETAIL PAGE BELOW-->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="headerBackground" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Button x:Name="GoBackButton" Content="Go Back" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{ThemeResource SystemAccentColor}" Click="BackButton_Click" />
-        </Grid>
-
-        <Grid x:Name="headerContent" Margin="20,52,20,20">
+        <Grid x:Name="headerContent" Grid.Row="0" Margin="16,36,16,16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <!-- Connected image -->
@@ -33,7 +30,45 @@
                 <TextBlock Text="{x:Bind DetailedObject.Title}" Style="{ThemeResource SubheaderTextBlockStyle}" Margin="0,0,0,10"  />
                 <TextBlock Text="{x:Bind DetailedObject.Detail}" Style="{ThemeResource SubtitleTextBlockStyle}"  />
             </StackPanel>
+            <StackPanel x:Name="operationPanel" Grid.Column="2" 
+                        VerticalAlignment="Top" HorizontalAlignment="Right">
+
+                <Button x:Name="execButton" Margin="0,0,0,16"  Click="execButton_Click" 
+                        Width="240" Height="100" Background="{ThemeResource SystemAccentColor}">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF5B0;" Margin="12,2,12,0"/>
+                        <TextBlock Text="起動する" FontSize="24px"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="GoBackButton" Margin="0,0,0,16" Click="BackButton_Click" 
+                        Width="240" Height="50">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE72B;" Margin="12,2,12,0"/>
+                        <TextBlock Text="もどる" FontSize="24px"/>
+                    </StackPanel>
+
+                </Button>
+                
+            </StackPanel>
         </Grid>
+
+        <Grid Grid.Row="1" Margin="16">
+            <FlipView x:Name="Gallery" ItemsSource="{x:Bind DetailedObject.ImageLocation}">
+                    <FlipView.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Image Source="{x:Bind Mode=OneTime}" />
+                        </DataTemplate>
+                    </FlipView.ItemTemplate>
+                </FlipView>
+            <PipsPager x:Name="FlipViewPipsPager"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Center"
+                           
+                           NumberOfPages="1"
+                           SelectedPageIndex="{x:Bind Path=Gallery.SelectedIndex, Mode=TwoWay}" />
+        </Grid>
+
 
     </Grid>
 </Page>
