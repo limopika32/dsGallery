@@ -14,6 +14,8 @@
             <RowDefinition/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        
+        <ProgressBar VerticalAlignment="Top" IsIndeterminate="True"/>
 
         <Grid x:Name="headerContent" Grid.Row="0" Margin="16,36,16,16">
             <Grid.ColumnDefinitions>
@@ -21,6 +23,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+
 
             <!-- Connected image -->
             <Image x:Name="detailedImage" MaxHeight="400" Source="{x:Bind DetailedObject.ImageLocation}" VerticalAlignment="Top" Stretch="Uniform" />
@@ -30,6 +33,7 @@
                 <TextBlock Text="{x:Bind DetailedObject.Title}" Style="{ThemeResource SubheaderTextBlockStyle}" Margin="0,0,0,10"  />
                 <TextBlock Text="{x:Bind DetailedObject.Detail}" Style="{ThemeResource SubtitleTextBlockStyle}"  />
             </StackPanel>
+            
             <StackPanel x:Name="operationPanel" Grid.Column="2" 
                         VerticalAlignment="Top" HorizontalAlignment="Right">
 
@@ -49,6 +53,12 @@
                     </StackPanel>
 
                 </Button>
+
+                <StackPanel>
+                    <FontIcon Glyph="&#xE7BA;" />
+                    <TextBlock Margin="0,4,0,0"
+                        Text="このアプリケーションは起動できません。" FontSize="16px"/>
+                </StackPanel>
                 
             </StackPanel>
         </Grid>

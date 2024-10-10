@@ -67,9 +67,11 @@ namespace dsGallery.view
         Frame.GoBack();
     }
 
-        private void execButton_Click(object sender, RoutedEventArgs e)
-        {
+    private void execButton_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
 
-        }
+
     }
 }

@@ -33,7 +33,6 @@ namespace dsGallery
     {
         private readonly AppWindow _appWindow;
         static public StorageFolder mapp, mmus, mill, mxtd;
-        String prevTitle;
 
         public MainWindow()
         {

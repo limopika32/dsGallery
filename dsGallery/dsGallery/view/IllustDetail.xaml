@@ -15,18 +15,20 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Button x:Name="closeButton" VerticalAlignment="Top" 
+        
+
+        <!-- Connected image -->
+            <Image x:Name="detailedImage" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Source="{x:Bind DetailedObject.ImageLocation}" Height="auto" IsTapEnabled="True"/>
+
+        <Button x:Name="closeButton" VerticalAlignment="Top"
                 Foreground="White"
                 Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                 Click="closeButton_Click">
             <FontIcon Glyph="&#xE711;" />
         </Button>
 
-        <!-- Connected image -->
-            <Image x:Name="detailedImage" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Source="{x:Bind DetailedObject.ImageLocation}" Height="auto" IsTapEnabled="True"/>
-
-            <!-- Panel to be coordinated with connected animation -->
+        <!-- Panel to be coordinated with connected animation -->
             <StackPanel x:Name="coordinatedPanel" Grid.Row="0" VerticalAlignment="Bottom" Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}" Opacity=".75">
                 <TextBlock Text="{x:Bind DetailedObject.Title}" Foreground="{ThemeResource SystemControlForegroundAltHighBrush}" 
                            Style="{ThemeResource SubheaderTextBlockStyle}" Margin="10,0,10,8"/>

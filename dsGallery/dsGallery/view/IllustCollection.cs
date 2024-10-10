@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.Search;
 
 namespace dsGallery.view
 {
@@ -23,13 +25,23 @@ namespace dsGallery.view
 
     public class IllustCollections : ObservableCollection<IllustCollection>
     {
+        readonly StorageFolder mill = MainWindow.mill;
+
         public IllustCollections()
         {
-            Add(new IllustCollection("Sample1", "loremipsum", "/Resources/Illust/costco.png"));
-            Add(new IllustCollection("Sample2", "loremipsum", "/Resources/Illust/costco.png"));
-            Add(new IllustCollection("Sample3", "loremipsum", "/Resources/Illust/costco.png"));
-            Add(new IllustCollection("Sample4", "loremipsum", "/Resources/Illust/costco.png"));
-            Add(new IllustCollection("Sample5", "loremipsum", "/Resources/Illust/costco.png"));
+            IllustReaderAsync();
+            
+            Add(new IllustCollection("COCO'S...?", "それちゃうやつ...", "/Resources/Illust/costco.png"));
+        }
+
+        async void IllustReaderAsync()
+        {
+            IReadOnlyList<StorageFile> m_illusts = await mill.GetFilesAsync(CommonFileQuery.DefaultQuery);
+
+            foreach (StorageFile file in m_illusts)
+            {
+                Add(new IllustCollection(file.DisplayName, "from SD card", file.Path));
+            }
         }
     }
 }
