@@ -24,6 +24,19 @@
 
             <AppBarSeparator />
 
+                <AppBarButton x:Name="hpHome1" Label="Rekitページをみる" Click="AppBarButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xF146;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="hpHome2" Label="KIT Web共有サーバーページをみる" Click="AppBarButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xF147;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+
+            <AppBarSeparator />
+
             </CommandBar>
 
             <TextBlock x:Name="hpStat" Margin="5,0,0,0" VerticalAlignment="Center"/>

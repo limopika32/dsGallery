@@ -29,13 +29,19 @@ namespace dsGallery.view
         public IllustDetail()
         {
             this.InitializeComponent();
-            GoBackButton.Loaded += GoBackButton_Loaded;
+            detailedImage.Tapped += DetailedImage_Tapped;
+        }
+
+        private void DetailedImage_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            coordinatedPanel.Visibility = coordinatedPanel.Visibility.Equals(Visibility.Collapsed) ? Visibility.Visible : Visibility.Collapsed;
+            closeButton.Visibility = coordinatedPanel.Visibility;
         }
 
         private void GoBackButton_Loaded(object sender, RoutedEventArgs e)
         {
             // When we land in page, put focus on the back button
-            GoBackButton.Focus(FocusState.Programmatic);
+            detailedImage.Focus(FocusState.Programmatic);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -62,7 +68,7 @@ namespace dsGallery.view
             ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("BackConnectedAnimation", detailedImage);
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
         }

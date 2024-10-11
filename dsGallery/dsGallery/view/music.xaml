@@ -7,16 +7,45 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <local:MusicCollections x:Key="myMusCols"/>
+        <DataTemplate x:Key="LinkedLayoutForMusic" x:DataType="local:MusicCollection">
+
+            <Grid Margin="0,12,0,12" AutomationProperties.Name="{x:Bind Title}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="150"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="mainContent" Source="{x:Bind ImageLocation}" MaxHeight="100" Stretch="Fill"/>
+
+                <StackPanel Margin="12,0,0,0" Grid.Column="1" >
+                    <TextBlock Text="{x:Bind Title}" FontSize="24" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                    HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                    <TextBlock Text="{x:Bind Detail}" FontFamily="Segoe UI" FontWeight="Normal" Style="{ThemeResource BodyTextBlockStyle}"
+                    TextTrimming="CharacterEllipsis" MaxLines="1"/>
+                </StackPanel>
+            </Grid>
+
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="部員が制作した音楽を鑑賞できます" Margin="0,0,0,20" Grid.Row="0"/>
 
-        <ListView Grid.Row="1"/>
+        <ListView x:Name="collection" Grid.Row="1"
+                  ItemsSource="{StaticResource myMusCols}"
+                  ItemTemplate="{StaticResource LinkedLayoutForMusic}"
+                  ItemClick="collection_ItemClick" IsItemClickEnabled="True"/>
 
-        <Button Content="再生" Click="Button_Click" Grid.Row="2"/>
+        <MediaPlayerElement x:Name="mediaPlayerElement" Grid.Row="2"
+                            AreTransportControlsEnabled="True"
+                            AutoPlay="True"/>
+
     </Grid>
 </Page>

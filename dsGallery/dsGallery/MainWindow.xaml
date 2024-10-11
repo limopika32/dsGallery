@@ -10,22 +10,28 @@
     
     
     <NavigationView x:Name="mainNV"
+                PaneTitle="金沢工業大学 電子計算機研究会"
                 Loaded="mainNV_Loaded"
-                ItemInvoked="mainNV_ItemInvoked">
+                ItemInvoked="mainNV_ItemInvoked"
+                BackRequested="mainNV_BackRequested">
 
         <NavigationView.MenuItems>
-            <NavigationViewItem x:Name="NVHome" Tag="NavigationView.Home" Icon="Home" Content="ホーム"/>
+            <NavigationViewItemHeader x:Name="NVHeader0" Content="私たちについて知る"/>
+            <NavigationViewItem x:Name="NVHome" Tag="dsGallery.view.home" Icon="Home" Content="ホーム"/>
             <NavigationViewItemSeparator/>
             <NavigationViewItemHeader x:Name="NVHeader1" Content="作品を見る"/>
-            <NavigationViewItem x:Name="NVApp" Tag="NavigationView.Application" Content="アプリケーション" Icon="GoToStart"/>
-            <NavigationViewItem x:Name="NVMusic" Tag="NavigationView.Music" Icon="Audio" Content="音楽"/>
-            <NavigationViewItem x:Name="NVIllust" Tag="NavigationView.Illust" Content="イラストレーション" Icon="Pictures"/>
+            <NavigationViewItem x:Name="NVApp" Tag="dsGallery.view.appli" Content="アプリケーション" Icon="GoToStart"/>
+            <NavigationViewItem x:Name="NVMusic" Tag="dsGallery.view.music" Icon="Audio" Content="音楽"/>
+            <NavigationViewItem x:Name="NVIllust" Tag="dsGallery.view.illust" Content="イラストレーション" Icon="Pictures"/>
         </NavigationView.MenuItems>
 
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox PlaceholderText="Search..."
+                QueryIcon="Find" AutomationProperties.Name="Search"/>
+        </NavigationView.AutoSuggestBox>
 
         <Frame x:Name="ContentFrame" IsTabStop="True"
-            NavigationFailed="ContentFrame_NavigationFailed">
-        </Frame>
+            NavigationFailed="ContentFrame_NavigationFailed"/>
 
 
     </NavigationView>
