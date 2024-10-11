@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,11 +37,19 @@ namespace dsGallery.view
 
         async void IllustReaderAsync()
         {
-            IReadOnlyList<StorageFile> m_illusts = await mill.GetFilesAsync(CommonFileQuery.DefaultQuery);
-
-            foreach (StorageFile file in m_illusts)
+            if (mill is null)
             {
-                Add(new IllustCollection(file.DisplayName, "from SD card", file.Path));
+
+            }
+            else
+            {
+                IReadOnlyList<StorageFile> m_illusts = await mill.GetFilesAsync(CommonFileQuery.DefaultQuery);
+
+                foreach (StorageFile file in m_illusts)
+                {
+                    Add(new IllustCollection(file.DisplayName, "from SD card", file.Path));
+                    Debug.WriteLine(file.Path);
+                }
             }
         }
     }
