@@ -34,6 +34,8 @@ namespace dsGallery.view
             // Ensure that the MainPage is only created once, and cached during navigation.
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
 
+            mediaPlayerElement.MediaPlayer.IsLoopingEnabled = true;
+            
         }
 
         private void collection_ItemClick(object sender, ItemClickEventArgs e)
@@ -44,7 +46,11 @@ namespace dsGallery.view
                 // Stash the clicked item for use later. We'll need it when we connect back from the detailpage.
                 _storeditem = container.Content as MusicCollection;
 
-                mediaPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Resources/Music/neomini2.mp3"));
+                MediaSource ms = MediaSource.CreateFromStorageFile(_storeditem.Path);
+
+                mediaPlayerElement.Source = ms;
+                
+
             }
 
         }

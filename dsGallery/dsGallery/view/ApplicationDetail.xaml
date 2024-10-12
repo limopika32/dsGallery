@@ -19,19 +19,25 @@
 
         <Grid x:Name="headerContent" Grid.Row="0" Margin="16,36,16,16">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="240"/>
             </Grid.ColumnDefinitions>
 
 
             <!-- Connected image -->
-            <Image x:Name="detailedImage" MaxHeight="400" Source="{x:Bind DetailedObject.ImageLocation}" VerticalAlignment="Top" Stretch="Uniform" />
+            <Image x:Name="detailedImage" MaxHeight="400" MaxWidth="320"
+                   Source="{x:Bind DetailedObject.ImageLocation}" VerticalAlignment="Top" Stretch="Uniform" />
 
             <!-- Panel to be coordinated with connected animation -->
             <StackPanel x:Name="coordinatedPanel" Grid.Column="1" VerticalAlignment="Top" Margin="20,0">
                 <TextBlock Text="{x:Bind DetailedObject.Title}" Style="{ThemeResource SubheaderTextBlockStyle}" Margin="0,0,0,10"  />
-                <TextBlock Text="{x:Bind DetailedObject.Detail}" Style="{ThemeResource SubtitleTextBlockStyle}"  />
+                <ScrollViewer MaxHeight="300">
+                    <TextBlock Text="{x:Bind DetailedObject.Detail}" Style="{ThemeResource SubtitleTextBlockStyle}" 
+                           TextWrapping="WrapWholeWords"/>
+                    
+                </ScrollViewer>
+                
             </StackPanel>
             
             <StackPanel x:Name="operationPanel" Grid.Column="2" 
@@ -54,10 +60,10 @@
 
                 </Button>
 
-                <StackPanel>
+                <StackPanel Visibility="Visible">
                     <FontIcon Glyph="&#xE7BA;" />
-                    <TextBlock Margin="0,4,0,0"
-                        Text="このアプリケーションは起動できません。" FontSize="16px"/>
+                    <TextBlock Margin="0,4,0,0" HorizontalAlignment="Center"
+                        Text="このアプリケーションは起動できません" FontSize="16px"/>
                 </StackPanel>
                 
             </StackPanel>

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage.Search;
+using Windows.Storage;
 
 namespace dsGallery.view
 {
@@ -12,9 +15,9 @@ namespace dsGallery.view
         public string Title { get; set; }
         public string Detail { get; set; }
         public string ImageLocation { get; set; }
-        public string Path { get; set; }
+        public StorageFile Path { get; set; }
 
-        public MusicCollection(string Title, string Detail, string ImageLocation, string Path)
+        public MusicCollection(string Title, string Detail, string ImageLocation, StorageFile Path)
         {
             this.Title = Title;
             this.Detail = Detail;
@@ -25,13 +28,28 @@ namespace dsGallery.view
 
     public class MusicCollections : ObservableCollection<MusicCollection>
     {
+        readonly StorageFolder mmus = MainWindow.mmus;
+
         public MusicCollections()
         {
-            Add(new MusicCollection("Sample6", "loremipsum1", "/Resources/Illust/costco.png", ""));
-            Add(new MusicCollection("Sample7", "loremipsum2", "/Resources/Illust/costco.png", ""));
-            Add(new MusicCollection("Sample8", "loremipsum3", "/Resources/Illust/costco.png", ""));
-            Add(new MusicCollection("Sample9", "loremipsum4", "/Resources/Illust/costco.png", ""));
-            Add(new MusicCollection("Sample10", "loremipsum5", "/Resources/Illust/costco.png", ""));
+            MusicReaderAsync();
+        }
+
+        async void MusicReaderAsync()
+        {
+            if (mmus is null)
+            {
+
+            }
+            else
+            {
+                IReadOnlyList<StorageFile> m_musics = await mmus.GetFilesAsync(CommonFileQuery.DefaultQuery);
+
+                foreach (StorageFile file in m_musics)
+                {
+                    Add(new MusicCollection(file.DisplayName, "from SD card", "/Resources/Illust/costco.png", file));
+                }
+            }
         }
     }
 }
