@@ -18,16 +18,16 @@ namespace dsGallery.view
         public string Detail { get; set; }
         public string ImageLocation { get; set; }
         public string Path { get; set; }
-        public string[] thumbnails { get; set; }
+        public List<String> thumbnails { get; set; }
 
 
-        public ApplicationCollection(string Title, string Detail, string ImageLocation, string Path)
+        public ApplicationCollection(string Title, string Detail, string ImageLocation, List<String> thumbnails , string Path)
         {
             this.Title = Title;
             this.Detail = Detail;
             this.ImageLocation = ImageLocation;
+            this.thumbnails = thumbnails;
             this.Path = Path;
-            
         }
     }
 
@@ -37,6 +37,8 @@ namespace dsGallery.view
 
         public ApplicationCollections()
         {
+            Clear();
+
             ApplicationReaderAsync();
         }
 
@@ -59,6 +61,8 @@ namespace dsGallery.view
 
                         if (result)
                         {
+                            Debug.WriteLine(folder.Path);
+
                             string author = data.GetObject().GetNamedString("author");
                             string title = data.GetObject().GetNamedString("title");
                             string icon = data.GetObject().GetNamedString("icon");
@@ -68,17 +72,18 @@ namespace dsGallery.view
 
                             icon = icon.Equals("") ? "/Resources/Illust/costco.png" : folder.Path + icon;
 
-                            Debug.WriteLine(folder.Path);
-                            Debug.WriteLine(icon);
+                            List<String> thumbnails = new List<string>();
 
-                            string[] thumbnails;
-
-
+                            foreach (var item in _thumbnails)
+                            {
+                                thumbnails.Add(folder.Path + item.GetString());
+                            }
 
                             Add(new ApplicationCollection(
                                 title,
                                 description + "\n\n" + "制作者: " + author,
                                 icon,
+                                thumbnails,
                                 execPath)
                                 );
                         }

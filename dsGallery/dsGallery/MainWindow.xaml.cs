@@ -80,10 +80,6 @@ namespace dsGallery
                     }
                     Debug.WriteLine(folder.Name + ", " + folder.DateCreated);
                 }
-                foreach (StorageFile file in sx)
-                    Debug.WriteLine(file.Name + ", " + file.DateCreated);
-
-
             }
             else
             {

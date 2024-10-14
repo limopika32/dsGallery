@@ -25,14 +25,18 @@ namespace dsGallery.view
     public sealed partial class appli : Page
     { 
         ApplicationCollection _storeditem;
-    
+
         public appli()
         {
             this.InitializeComponent();
 
             // Ensure that the MainPage is only created once, and cached during navigation.
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
+
+            
         }
+
+        
 
         private void collection_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -56,6 +60,8 @@ namespace dsGallery.view
 
         private async void collection_Loaded(object sender, RoutedEventArgs e)
         {
+            loadingView.Visibility = Visibility.Collapsed;
+
             if (_storeditem != null)
             {
                 // If the connected item appears outside the viewport, scroll it into view.
@@ -78,6 +84,11 @@ namespace dsGallery.view
                 // Set focus on the list
                 collection.Focus(FocusState.Programmatic);
             }
+        }
+
+        private void collection_Loading(FrameworkElement sender, object args)
+        {
+            loadingView.Visibility = Visibility.Visible;
         }
     }
 }

@@ -30,7 +30,6 @@
                         <StackPanel Orientation="Horizontal">
                             <Button Tag="execRemount" Content="Remount" Click="exec_Click"/>
                             <ProgressRing x:Name="remountSDring" Margin="24,0,12,0" IsActive="False"/>
-                            <TextBlock x:Name="remountSDtext" VerticalAlignment="Center" Visibility="Collapsed" Text="Checking SD card..."/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

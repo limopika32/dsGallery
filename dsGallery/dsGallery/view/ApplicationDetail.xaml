@@ -15,18 +15,18 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <ProgressBar VerticalAlignment="Top" IsIndeterminate="True"/>
+        <ProgressBar Visibility="Collapsed" VerticalAlignment="Top" IsIndeterminate="True"/>
 
         <Grid x:Name="headerContent" Grid.Row="0" Margin="16,36,16,16">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="240"/>
             </Grid.ColumnDefinitions>
 
 
             <!-- Connected image -->
-            <Image x:Name="detailedImage" MaxHeight="400" MaxWidth="320"
+            <Image x:Name="detailedImage" MaxWidth="320"
                    Source="{x:Bind DetailedObject.ImageLocation}" VerticalAlignment="Top" Stretch="Uniform" />
 
             <!-- Panel to be coordinated with connected animation -->
@@ -60,7 +60,7 @@
 
                 </Button>
 
-                <StackPanel Visibility="Visible">
+                <StackPanel x:Name="noExecWarning" Visibility="Collapsed">
                     <FontIcon Glyph="&#xE7BA;" />
                     <TextBlock Margin="0,4,0,0" HorizontalAlignment="Center"
                         Text="このアプリケーションは起動できません" FontSize="16px"/>
@@ -70,7 +70,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Margin="16">
-            <FlipView x:Name="Gallery" ItemsSource="{x:Bind DetailedObject.ImageLocation}">
+            <FlipView x:Name="Gallery" ItemsSource="{x:Bind DetailedObject.thumbnails}">
                     <FlipView.ItemTemplate>
                         <DataTemplate x:DataType="x:String">
                             <Image Source="{x:Bind Mode=OneTime}" />
@@ -80,8 +80,7 @@
             <PipsPager x:Name="FlipViewPipsPager"
                            VerticalAlignment="Bottom"
                            HorizontalAlignment="Center"
-                           
-                           NumberOfPages="1"
+                           NumberOfPages="{x:Bind DetailedObject.thumbnails.Count}"
                            SelectedPageIndex="{x:Bind Path=Gallery.SelectedIndex, Mode=TwoWay}" />
         </Grid>
 

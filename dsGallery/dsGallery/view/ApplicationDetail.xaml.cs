@@ -38,6 +38,11 @@ namespace dsGallery.view
             // Store the item to be used in binding to UI
             DetailedObject = e.Parameter as ApplicationCollection;
 
+            bool isExecable = DetailedObject.Path is not "";
+
+            execButton.IsEnabled = isExecable;
+            noExecWarning.Visibility = isExecable ? Visibility.Collapsed : Visibility.Visible;
+
             ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("ForwardConnectedAnimation");
             if (imageAnimation != null)
             {
@@ -65,6 +70,31 @@ namespace dsGallery.view
             
         }
 
+        async void ExecuteFromPath(string path)
+        {
+            // Path to the file in the app package to launch
+            string imageFile = @"images\test.png";
 
+            var file = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFileAsync(imageFile);
+
+            if (file != null)
+            {
+                // Launch the retrieved file
+                var success = await Windows.System.Launcher.LaunchFileAsync(file);
+
+                if (success)
+                {
+                    // File launched
+                }
+                else
+                {
+                    // File launch failed
+                }
+            }
+            else
+            {
+                // Could not find file
+            }
+        }
     }
 }

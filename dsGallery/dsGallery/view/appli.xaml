@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
-        <local:ApplicationCollections x:Key="myAppCols"/>
+        <local:ApplicationCollections x:Name="appCollection" x:Key="myAppCols"/>
         <DataTemplate x:Key="LinkedLayoutForAppli" x:DataType="local:ApplicationCollection">
             
                 <Grid Margin="0,12,0,12" AutomationProperties.Name="{x:Bind Title}" >
@@ -28,7 +28,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Margin="24">
+    <Grid x:Name="mainGrid" Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -36,10 +36,11 @@
 
         <TextBlock Text="部員が制作したアプリケーションを 実行 または 鑑賞 できます" Margin="0,0,0,20" Grid.Row="0"/>
 
+
         <ListView x:Name="collection" Grid.Row="1"
                   ItemsSource="{StaticResource myAppCols}"
                   ItemTemplate="{StaticResource LinkedLayoutForAppli}"
-                  SelectionMode="None"
+                  SelectionMode="None" 
                   Loaded="collection_Loaded"
                   ItemClick="collection_ItemClick" IsItemClickEnabled="True"/>
 
