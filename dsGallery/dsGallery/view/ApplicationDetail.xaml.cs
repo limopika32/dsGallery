@@ -13,6 +13,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Media.Animation;
+using System.Diagnostics;
+using Microsoft.UI.Xaml.Shapes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -67,34 +69,13 @@ namespace dsGallery.view
 
         private void execButton_Click(object sender, RoutedEventArgs e)
         {
+            var app = new ProcessStartInfo();
+
+            app.FileName = @DetailedObject.Path;
+            app.UseShellExecute= true;
             
+            Process.Start(app);
         }
 
-        async void ExecuteFromPath(string path)
-        {
-            // Path to the file in the app package to launch
-            string imageFile = @"images\test.png";
-
-            var file = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFileAsync(imageFile);
-
-            if (file != null)
-            {
-                // Launch the retrieved file
-                var success = await Windows.System.Launcher.LaunchFileAsync(file);
-
-                if (success)
-                {
-                    // File launched
-                }
-                else
-                {
-                    // File launch failed
-                }
-            }
-            else
-            {
-                // Could not find file
-            }
-        }
     }
 }

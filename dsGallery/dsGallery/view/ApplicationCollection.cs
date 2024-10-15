@@ -71,6 +71,7 @@ namespace dsGallery.view
                             string description = data.GetObject().GetNamedString("description");
 
                             icon = icon.Equals("") ? "/Resources/Illust/costco.png" : folder.Path + icon;
+                            execPath = execPath.Equals("") ? "" : folder.Path + execPath;
 
                             List<String> thumbnails = new List<string>();
 
@@ -88,7 +89,7 @@ namespace dsGallery.view
                                 );
                         }
                     }
-                    catch (FileNotFoundException e) { }
+                    catch (FileNotFoundException) { }
 
                 }
             }

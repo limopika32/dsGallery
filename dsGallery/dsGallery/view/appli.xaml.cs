@@ -60,7 +60,7 @@ namespace dsGallery.view
 
         private async void collection_Loaded(object sender, RoutedEventArgs e)
         {
-            loadingView.Visibility = Visibility.Collapsed;
+
 
             if (_storeditem != null)
             {
@@ -86,9 +86,5 @@ namespace dsGallery.view
             }
         }
 
-        private void collection_Loading(FrameworkElement sender, object args)
-        {
-            loadingView.Visibility = Visibility.Visible;
-        }
     }
 }

@@ -41,6 +41,8 @@ namespace dsGallery
             _appWindow = GetAppWindowForCurrentWindow();
             _appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
 
+
+            
             SDreader();
         }
 
