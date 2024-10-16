@@ -31,24 +31,17 @@ namespace dsGallery.view
         public IllustCollections()
         {
             IllustReaderAsync();
-            
-            Add(new IllustCollection("COCO'S...?", "それちゃうやつ...", "/Resources/Illust/costco.png"));
         }
 
         async void IllustReaderAsync()
         {
-            if (mill is null)
-            {
-
-            }
-            else
+            if (mill is not null)
             {
                 IReadOnlyList<StorageFile> m_illusts = await mill.GetFilesAsync(CommonFileQuery.DefaultQuery);
 
                 foreach (StorageFile file in m_illusts)
                 {
                     Add(new IllustCollection(file.DisplayName, "from SD card", file.Path));
-                    Debug.WriteLine(file.Path);
                 }
             }
         }

@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Diagnostics;
 using Microsoft.UI.Xaml.Shapes;
+using Windows.ApplicationModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -69,12 +70,19 @@ namespace dsGallery.view
 
         private void execButton_Click(object sender, RoutedEventArgs e)
         {
-            var app = new ProcessStartInfo();
 
-            app.FileName = @DetailedObject.Path;
-            app.UseShellExecute= true;
+            var psInfo = new ProcessStartInfo
+            {
+                FileName = @DetailedObject.Path.Replace("/", "\\"),
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                RedirectStandardOutput = true
+            };
+
+            var p = Process.Start(psInfo);
+            Debug.WriteLine(p.StandardOutput.ReadToEndAsync().Result);
+
             
-            Process.Start(app);
         }
 
     }

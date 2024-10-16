@@ -37,11 +37,7 @@ namespace dsGallery.view
 
         async void MusicReaderAsync()
         {
-            if (mmus is null)
-            {
-
-            }
-            else
+            if (mmus is not null)
             {
                 IReadOnlyList<StorageFile> m_musics = await mmus.GetFilesAsync(CommonFileQuery.DefaultQuery);
 
