@@ -1,8 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using System;
-using System.Runtime.InteropServices;
 using System.ComponentModel;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 // 空白ページの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
@@ -29,7 +28,7 @@ namespace dsGallery.view
             switch (selected.ToString())
             {
                 case "execSignout":
-                    if (!WTSDisconnectSession(WTS_CURRENT_SERVER_HANDLE,WTS_CURRENT_SESSION, false))
+                    if (!WTSDisconnectSession(WTS_CURRENT_SERVER_HANDLE, WTS_CURRENT_SESSION, false))
                         throw new Win32Exception();
                     break;
                 case "execRemount":

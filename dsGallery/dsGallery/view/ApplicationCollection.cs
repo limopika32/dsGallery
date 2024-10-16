@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Storage;
 using Windows.Storage.Search;
@@ -21,7 +18,7 @@ namespace dsGallery.view
         public List<String> thumbnails { get; set; }
 
 
-        public ApplicationCollection(string Title, string Detail, string ImageLocation, List<String> thumbnails , string Path)
+        public ApplicationCollection(string Title, string Detail, string ImageLocation, List<String> thumbnails, string Path)
         {
             this.Title = Title;
             this.Detail = Detail;

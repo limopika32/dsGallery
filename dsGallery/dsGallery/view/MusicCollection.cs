@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Storage.Search;
 using Windows.Storage;
+using Windows.Storage.Search;
 
 namespace dsGallery.view
 {
