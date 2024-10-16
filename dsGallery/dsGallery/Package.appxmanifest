@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10" IgnorableNamespaces="uap mp uap3 iot">
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" IgnorableNamespaces="uap mp uap3 iot">
   <Identity Name="0b47a723-00b1-46fb-a305-46bf7ee2d579" Publisher="CN=limo" Version="1.0.0.0" />
   <Properties>
     <DisplayName>dsViewer</DisplayName>
@@ -23,6 +23,13 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
         <uap:LockScreen BadgeLogo="Assets\BadgeLogo.png" Notification="badge"/>
       </uap:VisualElements>
+      <Extensions>
+        <desktop:Extension Category="windows.fullTrustProcess" Executable="Launcher\Launcher.exe">
+          <desktop:FullTrustProcess>
+            <desktop:ParameterGroup GroupId="execMain" Parameters="execMain"/>
+          </desktop:FullTrustProcess>
+        </desktop:Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

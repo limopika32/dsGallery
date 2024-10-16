@@ -70,7 +70,7 @@ namespace dsGallery.view
                             string execPath = data.GetObject().GetNamedString("execPath");
                             string description = data.GetObject().GetNamedString("description");
 
-                            icon = icon.Equals("") ? "/Resources/Illust/costco.png" : folder.Path + icon;
+                            icon = icon.Equals("") ? "/Resources/noimage.png" : folder.Path + icon;
                             execPath = execPath.Equals("") ? "" : folder.Path + execPath;
 
                             List<String> thumbnails = new List<string>();

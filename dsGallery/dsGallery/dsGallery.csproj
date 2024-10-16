@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
@@ -10,15 +10,14 @@
     <RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &lt; 8">win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
     <DefaultLanguage>ja-JP</DefaultLanguage>
+    <PackageIcon>Square44x44Logo.targetsize-256.png</PackageIcon>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <WindowsPackageType>None</WindowsPackageType>
+    <PublishSingleFile>true</PublishSingleFile>
+    <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Resources\Music\neomini2.mp3" />
-    <None Remove="view\ApplicationDetail.xaml" />
-    <None Remove="view\hidden.xaml" />
-    <None Remove="view\IllustDetail.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Music\neomini2.mp3" />
+
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +26,13 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240802000" />
     <PackageReference Include="System.Diagnostics.EventLog" Version="8.0.0" />
     <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Assets\Square44x44Logo.targetsize-256.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

@@ -70,19 +70,20 @@ namespace dsGallery.view
 
         private void execButton_Click(object sender, RoutedEventArgs e)
         {
+            execStatus.Visibility = Visibility.Visible;
 
             var psInfo = new ProcessStartInfo
             {
-                FileName = @DetailedObject.Path.Replace("/", "\\"),
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true
+                WorkingDirectory = @"D:\system\",
+                FileName = DetailedObject.Path.Replace("/", "\\"),
+                UseShellExecute = true,
             };
 
             var p = Process.Start(psInfo);
-            Debug.WriteLine(p.StandardOutput.ReadToEndAsync().Result);
 
-            
+            p.WaitForExit();
+
+            execStatus.Visibility = Visibility.Collapsed;
         }
 
     }

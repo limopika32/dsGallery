@@ -43,7 +43,7 @@ namespace dsGallery.view
 
                 foreach (StorageFile file in m_musics)
                 {
-                    Add(new MusicCollection(file.DisplayName, "from SD card", "/Resources/Illust/costco.png", file));
+                    Add(new MusicCollection(file.DisplayName, "(詳細情報なし)", "/Resources/nodisc.png", file));
                 }
             }
         }

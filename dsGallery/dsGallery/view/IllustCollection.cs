@@ -41,7 +41,7 @@ namespace dsGallery.view
 
                 foreach (StorageFile file in m_illusts)
                 {
-                    Add(new IllustCollection(file.DisplayName, "from SD card", file.Path));
+                    Add(new IllustCollection(file.DisplayName, "(詳細情報なし)", file.Path));
                 }
             }
         }

@@ -25,11 +25,6 @@
             <NavigationViewItem x:Name="NVIllust" Tag="dsGallery.view.illust" Content="イラストレーション" Icon="Pictures"/>
         </NavigationView.MenuItems>
 
-        <NavigationView.AutoSuggestBox>
-            <AutoSuggestBox PlaceholderText="Search..."
-                QueryIcon="Find" AutomationProperties.Name="Search"/>
-        </NavigationView.AutoSuggestBox>
-
         <Frame x:Name="ContentFrame" IsTabStop="True"
             NavigationFailed="ContentFrame_NavigationFailed"/>
 

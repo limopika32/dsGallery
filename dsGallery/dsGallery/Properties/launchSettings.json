@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dsGallery": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "authenticationMode": "Windows",
+      "remoteDebugMachine": "192.168.1.9:4026"
+    }
+  }
+}

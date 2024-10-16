@@ -32,7 +32,7 @@ namespace dsGallery
     public sealed partial class MainWindow : Window
     {
         private readonly AppWindow _appWindow;
-        static public StorageFolder mapp, mmus, mill, mxtd;
+        static public StorageFolder mapp, mmus, mill;
 
         public MainWindow()
         {
@@ -73,9 +73,6 @@ namespace dsGallery
                             break;
                         case "illust":
                             mill = folder;
-                            break;
-                        case "system":
-                            mxtd = folder;
                             break;
                         default:
                             break;

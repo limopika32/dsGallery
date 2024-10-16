@@ -9,8 +9,8 @@
 
   <Identity
     Name="a896ae39-3678-40cd-969e-eab8e80d87a6"
-    Publisher="CN=2U_pikachu"
-    Version="1.0.0.0" />
+    Publisher="CN=limo"
+    Version="1.0.5.0" />
 
   <mp:PhoneIdentity PhoneProductId="a896ae39-3678-40cd-969e-eab8e80d87a6" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
