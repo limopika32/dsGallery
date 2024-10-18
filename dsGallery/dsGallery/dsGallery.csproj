@@ -11,9 +11,8 @@
     <UseWinUI>true</UseWinUI>
     <DefaultLanguage>ja-JP</DefaultLanguage>
     <PackageIcon>Square44x44Logo.targetsize-256.png</PackageIcon>
-    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-    <WindowsPackageType>None</WindowsPackageType>
-    <PublishSingleFile>true</PublishSingleFile>
+    
+    
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
@@ -32,6 +31,15 @@
     <None Include="Assets\Square44x44Logo.targetsize-256.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\nodisc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\noimage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

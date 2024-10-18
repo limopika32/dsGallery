@@ -24,7 +24,7 @@
                     <TextBlock Text="{x:Bind Title}" FontSize="24" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
                     HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
                     <TextBlock Text="{x:Bind Detail}" FontFamily="Segoe UI" FontWeight="Normal" Style="{ThemeResource BodyTextBlockStyle}"
-                    TextTrimming="CharacterEllipsis" MaxLines="2"/>
+                    TextTrimming="CharacterEllipsis" MaxLines="4"/>
                 </StackPanel>
             </Grid>
 
